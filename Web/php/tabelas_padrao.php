@@ -15,11 +15,11 @@ include 'gerador_de_tabelas.php';
   <?php
     echo "<div class='container col-3' style='width:1000px; display:flex-box;'>";
     gerar_tabela('tb_tipo_fornecedor', 'tipo', 'Tipo Fornecedores', 'cadastro_tipo_fornecedor.php');
-    gerar_tabela('tb_raca', 'raca', 'Raças');
+    gerar_tabela('tb_raca', 'raca', 'Raças', 'cadastro_raca.php');
     echo "</div>";
     echo "<div class='container' style='width:400px; display:flex-box;'>";
     gerar_tabela('tb_vacina', 'vacina', 'Vacinas', 'cadastro_vacina.php');
-    gerar_tabela('tb_lote', 'nome', 'Lotes');
+    gerar_tabela('tb_lote', 'nome', 'Lotes', 'cadastro_lote.php');
     echo "</div>";
     ?>
 </body>
