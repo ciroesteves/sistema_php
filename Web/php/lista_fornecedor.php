@@ -62,6 +62,3 @@ require_once './navegador.php';
 </body>
 
 </html>
-<script src="../lib/js/mascaras.js">
-  mascaraTelefone();
-</script>
