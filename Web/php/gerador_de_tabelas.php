@@ -12,7 +12,7 @@ function gerar_tabela($tabela, $coluna, $titulo, $botao = null)
             <div class='row'>
             <h3 class='col-md-6'>{$titulo}</h3>
             <div class='col-md-6 text-right'>
-                <a href='$botao'> 
+                <a href='cadastro_$botao'> 
                     <button class='btn btn-success'>Cadastrar</button>
                 </a>
             </div>
@@ -32,7 +32,7 @@ function gerar_tabela($tabela, $coluna, $titulo, $botao = null)
         echo "<tr>
                     <td>{$row[$coluna]}</td>
                     <td>
-                        <a href='$botao?id=" . $row['id'] . "'>
+                        <a href='editar_$botao?id=" . $row['id'] . "'>
                             <button type='button' class='btn btn-primary'>
                                 <i class='fa fa-pencil'></i>
                                 Editar

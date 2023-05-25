@@ -11,7 +11,7 @@ require_once './navegador.php';
 </head>
 
 <body>
-  <div class="container mt-5">
+  <div class="container mt-5 col-10" style="width: auto;">
     <div class="row">
       <h1 class="col-md-6">Fornecedores</h1>
       <div class="col-md-6 text-right"> 
