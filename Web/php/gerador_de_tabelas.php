@@ -8,7 +8,7 @@ function gerar_tabela($tabela, $coluna, $titulo, $botao = null)
     $objDB->connect();
 
     echo "
-        <div class='table-container container mt-5' style='width:400px;'>
+        <div class='table-container container'>
             <div class='row'>
             <h3 class='col-md-6'>{$titulo}</h3>
             <div class='col-md-6 text-right'>
@@ -31,7 +31,7 @@ function gerar_tabela($tabela, $coluna, $titulo, $botao = null)
 
         echo "<tr>
                     <td>{$row[$coluna]}</td>
-                    <td>
+                    <td style='text-align:right';>
                         <a href='editar_$botao?id=" . $row['id'] . "'>
                             <button type='button' class='btn btn-primary'>
                                 <i class='fa fa-pencil'></i>
