@@ -7,7 +7,7 @@ $objDB = new DB();
 $objDB->connect();
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM tb_animal animal JOIN tb_raca raca ON animal.raca_fk = raca.id JOIN tb_lote lote ON animal.lote_fk = lote.id WHERE animal.id = $id";
+$sql = "SELECT animal.*, lote.*, raca.raca, raca.descricao as raca_descricao FROM tb_animal animal JOIN tb_raca raca ON animal.raca_fk = raca.id JOIN tb_lote lote ON animal.lote_fk = lote.id WHERE animal.id = $id";
 $result = $objDB->conn->query($sql);
 $animal = $result->fetch();
 
@@ -96,7 +96,7 @@ $animal = $result->fetch();
 
   <div class="card">
     <h2>Descrição</h2>
-    <p>Bezerra adquirida do Marcão, anelorada, teve um bom ganho de peso em pouco tempo e possivelmente pode estar cruzada</p>
+    <p><?= $animal['descricao'] ?></p>
   </div>
 
   <div class="card">
