@@ -1,5 +1,16 @@
 <?php
 require_once './navegador.php';
+require_once '../lib/php/DB.class.php';
+
+
+$objDB = new DB();
+$objDB->connect();
+
+$id = $_GET['id'];
+$sql = "SELECT * FROM tb_animal animal JOIN tb_raca raca ON animal.raca_fk = raca.id JOIN tb_lote lote ON animal.lote_fk = lote.id WHERE animal.id = $id";
+$result = $objDB->conn->query($sql);
+$animal = $result->fetch();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,21 +48,24 @@ require_once './navegador.php';
     }
 
     table {
-            border-collapse: collapse;
-        }
+      border-collapse: collapse;
+    }
 
-        table, th, td {
-            border: 1px solid black;
-        }
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
 
-        th, td {
-            padding: 5px;
-            width: 200px;
-        }
+    th,
+    td {
+      padding: 5px;
+      width: 200px;
+    }
 
-        th {
-          background-color: lightgray;
-        }
+    th {
+      background-color: lightgray;
+    }
   </style>
 </head>
 
@@ -62,16 +76,21 @@ require_once './navegador.php';
     </div>
     <div class="card col-md-3">
 
-      <h2>Número - Nome do Animal</h2>
-      <p><strong>Idade:</strong> 3 anos e 4 meses</p>
-      <p><strong>Peso:</strong> 320 kg / 10,8@</p>
-      <p><strong>Sexo:</strong> Fêmea</p>
-      <p><strong>Raça:</strong> Anelorado</p>
-      <p><strong>Lote:</strong> Ponte</p>
-      <p><strong>Tem Nota:</strong> Não</p>
-      <p><strong>Pai:</strong> -</p>
-      <p><strong>Mãe:</strong> -</p>
-    </div>  
+      <h2><?= $animal['numero'] ?> - <?= $animal['nome'] ?></h2>
+      <p><strong>Nascimento:</strong>
+        <?php
+        $data = DateTime::createFromFormat('Y-m-d', $animal['nascimento']);
+        echo date_format($data, "d/m/Y");
+        ?>
+      </p>
+      <p><strong>Peso: </strong> 320 kg / 10,8@</p>
+      <p><strong>Sexo: </strong><?php echo $sexo = $animal['sexo'] == 1 ? 'Fêmea' : 'Macho'; ?></p>
+      <p><strong>Raça: </strong><?= $animal['raca'] ?></p>
+      <p><strong>Lote: </strong><?= $animal['lote'] ?></p>
+      <p><strong>Tem Nota: </strong><?php echo $vacina = $animal['tem_nota'] == 1 ? 'Sim' : 'Não'; ?></p>
+      <p><strong>Pai: </strong><?= $animal['pai'] ?></p>
+      <p><strong>Mãe: </strong><?= $animal['mae'] ?></p>
+    </div>
   </div>
 
 

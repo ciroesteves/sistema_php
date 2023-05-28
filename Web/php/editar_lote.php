@@ -5,9 +5,9 @@ $objDB->connect();
 
 $result = $objDB->read('tb_lote', $_GET['id']);
 
-if (!empty($_POST['nome'])) {
+if (!empty($_POST['lote'])) {
     $dados = array(
-        "nome" => $_POST['nome']
+        "lote" => $_POST['lote']
     );
     $filtro = "id={$result['id']}";
     $objDB->update('tb_lote', $dados, $filtro);
@@ -41,8 +41,8 @@ if (!empty($_POST['excluir'])) {
         </div>
         <form method="POST">
             <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" value="<?php echo $result['nome']; ?>" required>
+                <label for="lote">Lote:</label>
+                <input type="text" id="lote" name="lote" value="<?php echo $result['lote']; ?>" required>
             </div>
             <input type="submit" value="Editar">
         </form>
@@ -57,10 +57,10 @@ if (!empty($_POST['excluir'])) {
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const nome = form.nome.value.trim();
+            const lote = form.lote.value.trim();
 
-            if (nome === '') {
-                alert('Por favor, preencha o campo nome.');
+            if (lote === '') {
+                alert('Por favor, preencha o campo lote.');
                 return;
             }
 

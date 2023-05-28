@@ -6,7 +6,7 @@ $objDB->connect();
 if ($_POST) {
 	// Recebe os dados do formulário
 	$dados = array(
-		"nome" => $_POST['nome']
+		"lote" => $_POST['lote']
 	);
 
 	// Query de inserção
@@ -31,8 +31,8 @@ if ($_POST) {
     </div>
         <form method="POST">
             <div class="form-group">
-                <label for="nome">Lote:</label>
-                <input type="text" id="nome" name="nome" required>
+                <label for="lote">Lote:</label>
+                <input type="text" id="lote" name="lote" required>
             </div>
             <input type="submit" value="Cadastrar">
         </form>
@@ -43,9 +43,9 @@ if ($_POST) {
         form.addEventListener('submit', (event) => {
             var scriptVersion = 1;
             event.preventDefault();
-            const nome = form.nome.value.trim();
+            const lote = form.lote.value.trim();
 
-            if (nome === '') {
+            if (lote === '') {
                 alert('Por favor, preencha o campo lote.');
                 return;
             }

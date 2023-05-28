@@ -5,7 +5,7 @@ class DB
   private $db_name = "fazenda_pecuaria";
   private $username = "root";
   private $password = "";
-  private $conn;
+  public $conn;
 
   // Método para se conectar ao banco de dados
   public function connect()
@@ -92,5 +92,12 @@ class DB
     $stmt = $this->conn->prepare("DELETE FROM $tabela WHERE id = ?");
     $stmt->execute([$id]);
     return $stmt->rowCount();
+  }
+
+  public function consultaComJoin($query) {
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
   }
 }
