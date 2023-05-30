@@ -5,7 +5,7 @@ $objDB->connect();
 
 if ($_POST) {
     if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
-        $nomeArquivo = $_POST['numero'] . ".jpeg";
+        $nomeArquivo = $_FILES["foto"]["name"];
         $caminhoTemporario = $_FILES["foto"]["tmp_name"];
         $caminhoDestino = "../../Archives/photos/" . $nomeArquivo;
     
@@ -19,7 +19,6 @@ if ($_POST) {
         echo "Erro no envio da imagem.";
       }
     // Recebe os dados do formulário
-    // Recebe os dados do formulário
     $dados = array(
         "nome" => $_POST['nome'],
         "numero" => $_POST['numero'],
@@ -29,10 +28,10 @@ if ($_POST) {
         "pai" => $_POST['pai'],
         "mae" => $_POST['mae'],
         "sexo" => $_POST['sexo'],
-        "status" => 1,
+        "status" => $_POST['status'],
         "foto" => $caminhoDestino,
-        //"descricao" => $_POST['descricao'],
-        "tem_nota" => $_POST['tem_nota']
+        "descricao" => $_POST['descricao'],
+        "tem_nota" => 1
     );
 
     // Query de inserção
@@ -132,7 +131,7 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="tem_nota">Tem nota?</label>
+                <label for="tem_nota">Tem nota? </label>
                 <input type="checkbox" id="tem_nota" name="tem_nota" checked>
             </div>
 
@@ -140,7 +139,6 @@ if ($_POST) {
                 <label for="foto">Foto: </label>
                 <input type="file" id="foto" name="foto">
             </div>
-
 
 
             <input type="submit" value="Cadastrar">
@@ -156,7 +154,9 @@ if ($_POST) {
             const lote_fk = form.lote_fk.value.trim();
             const sexo = form.sexo.value.trim();
             const numero = form.numero.value.trim();
+            const status = form.status.value.trim();
             const tem_nota = form.tem_nota.value.trim();
+            const nascimento = form.nascimento.value.trim();
 
             if (nome === '') {
                 alert('Por favor, preencha o campo nome.');
@@ -170,7 +170,10 @@ if ($_POST) {
                 alert('Por favor, preencha o campo lote.');
                 return;
             }
-
+            if (nascimento === '') {
+                alert('Por favor, preencha o campo nascimento.');
+                return;
+            }
             if (sexo === '') {
                 alert('Por favor, preencha o campo sexo.');
                 return;
@@ -180,6 +183,10 @@ if ($_POST) {
                 return;
             }
 
+            if (status === '') {
+                alert('Por favor, preencha o campo status.');
+                return;
+            }
             if (tem_nota === '') {
                 alert('Por favor, preencha o campo tem_nota.');
                 return;
