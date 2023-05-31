@@ -31,8 +31,8 @@ if ($_POST) {
         "sexo" => $_POST['sexo'],
         "status" => 1,
         "foto" => $caminhoDestino,
-        //"descricao" => $_POST['descricao'],
-        "tem_nota" => $_POST['tem_nota']
+        "descricao" => $_POST['descricao'],
+        "tem_nota" => !empty($_POST['tem_nota']) ? $_POST['tem_nota'] : 0
     );
 
     // Query de inserção
@@ -51,7 +51,7 @@ if ($_POST) {
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row container-2">
             <div class="col-md-2 text-right">
                 <a onclick="location.href ='lista_animal.php';">Voltar</a>
             </div>
@@ -95,7 +95,7 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="fornecedor_fk">Raça:</label>
+                <label for="fornecedor_fk">Fornecedor:</label>
                 <select name="fornecedor_fk" id="fornecedor_fk">
                     <?php
                     echo '<option value="" checked>Selecione</option>';
@@ -108,15 +108,19 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="pai">Pai:</label>
-                <input type="text" id="pai" name="pai">
+                <label for="pai">Pai: </label>
+                <input type="number" id="pai" name="pai">
             </div>
 
             <div class="form-group">
-                <label for="mae">Mãe:</label>
-                <input type="text" id="mae" name="mae">
+                <label for="mae">Mãe: </label>
+                <input type="number" id="mae" name="mae">
             </div>
 
+            <div class="form-group">
+                <label for="descricao">Descrição: </label>
+                <input type="text" id="descricao" name="descricao">
+            </div>
 
             <div class="form-group">
                 <label>Sexo: </label>
@@ -133,14 +137,15 @@ if ($_POST) {
 
             <div class="form-group">
                 <label for="tem_nota">Tem nota?</label>
-                <input type="checkbox" id="tem_nota" name="tem_nota" checked>
+                <input type="checkbox" id="tem_nota" name="tem_nota" value="1" checked>
             </div>
 
             <div class="form-group">
                 <label for="foto">Foto: </label>
                 <input type="file" id="foto" name="foto">
             </div>
-
+                
+                </br>
 
 
             <input type="submit" value="Cadastrar">

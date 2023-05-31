@@ -11,6 +11,10 @@ $sql = "SELECT animal.*, lote.*, raca.raca, raca.descricao as raca_descricao FRO
 $result = $objDB->conn->query($sql);
 $animal = $result->fetch();
 
+$resultPai = $objDB->read('tb_animal', $animal['pai']);
+$resultMae = $objDB->read('tb_animal', $animal['mae']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,7 +76,7 @@ $animal = $result->fetch();
 <body>
   <div class="row teste">
     <div class="card col-md-2">
-      <img src="../../Archives/imagem.jpeg" alt="Foto do Usuário">
+      <img src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../Archives/imagem.jpeg' ?>" alt="Foto do Usuário">
     </div>
     <div class="card col-md-3">
 
@@ -88,8 +92,8 @@ $animal = $result->fetch();
       <p><strong>Raça: </strong><?= $animal['raca'] ?></p>
       <p><strong>Lote: </strong><?= $animal['lote'] ?></p>
       <p><strong>Tem Nota: </strong><?php echo $vacina = $animal['tem_nota'] == 1 ? 'Sim' : 'Não'; ?></p>
-      <p><strong>Pai: </strong><?= $animal['pai'] ?></p>
-      <p><strong>Mãe: </strong><?= $animal['mae'] ?></p>
+      <p><strong>Pai: </strong><?= $resultPai['nome'] ?></p>
+      <p><strong>Mãe: </strong><?= $resultPai['nome'] ?></p>
     </div>
   </div>
 
