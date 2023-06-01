@@ -43,6 +43,51 @@ require_once './navegador.php';
       </div>
     </form>
   </div>
+
+  <div class="container mt-5 col-10" style="width: auto;">
+    <div class="row">
+      <h1 class="col-md-6">Relatório</h1>  
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Nome</th>
+          <th>Sexo</th>
+          <th>Idade</th>
+          <th>Lote</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        include_once '../lib/php/DB.class.php';
+        
+        $objDB = new DB();
+        $objDB->connect();
+        
+        $results = $objDB->readAll('tb_animal');
+        $dataAtual = date('Y-m-d');
+
+        foreach ($results as $row) {
+          $idade = (date('Y', strtotime($dataAtual)) - date('Y', strtotime($row['nascimento']))) * 12;
+          $idade += date('m', strtotime($dataAtual)) - date('m', strtotime($row['nascimento']));
+          $sexo = $row['sexo'] == 1 ? 'Fêmea' : 'Macho';
+          $lote = $objDB->read('tb_lote', $row['lote_fk']);
+          echo "<tr>";
+          echo "<td>{$row['numero']}</td>";
+          echo "<td>{$row['nome']}</td>";
+          echo "<td>{$sexo}</td>";
+          echo "<td>{$idade} Meses</td>";
+          echo "<td>{$lote['lote']}</td>";
+          echo "<td><a href='ficha_animal.php?id=" . $row['id'] . "'><button type='button' class='btn btn-primary'><i class='fa fa-pencil'></i>Perfil</button></a></td>";
+          echo "</tr>";
+        }
+        ?>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
 
