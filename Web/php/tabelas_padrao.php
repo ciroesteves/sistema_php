@@ -19,7 +19,7 @@ include 'gerador_de_tabelas.php';
     echo "</span>";
     echo "<span class='padrao'>";
     gerar_tabela('tb_vacina', 'vacina', 'Vacinas', 'vacina.php');
-    gerar_tabela('tb_lote', 'nome', 'Lotes', 'lote.php');
+    gerar_tabela('tb_lote', 'lote', 'Lotes', 'lote.php');
     echo "</span>";
     ?>
 </body>

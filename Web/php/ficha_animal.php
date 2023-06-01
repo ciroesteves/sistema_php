@@ -14,7 +14,6 @@ $animal = $result->fetch();
 $resultPai = $objDB->read('tb_animal', $animal['pai']);
 $resultMae = $objDB->read('tb_animal', $animal['mae']);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -92,8 +91,8 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
       <p><strong>Raça: </strong><?= $animal['raca'] ?></p>
       <p><strong>Lote: </strong><?= $animal['lote'] ?></p>
       <p><strong>Tem Nota: </strong><?php echo $vacina = $animal['tem_nota'] == 1 ? 'Sim' : 'Não'; ?></p>
-      <p><strong>Pai: </strong><?= $resultPai['nome'] ?></p>
-      <p><strong>Mãe: </strong><?= $resultPai['nome'] ?></p>
+      <p><strong>Pai: </strong><?= $result = $resultPai ? $resultPai['nome'] : ''; ?></p>
+      <p><strong>Mãe: </strong><?= $result = $resultMae ? $resultMae['nome'] : '';?></p>
     </div>
   </div>
 

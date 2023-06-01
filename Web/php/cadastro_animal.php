@@ -4,28 +4,33 @@ $objDB = new DB();
 $objDB->connect();
 
 if ($_POST) {
+    $filtro = "numero = " . $_POST['numero'] . " AND status=1";
+    $result = $objDB->readWhere("tb_animal", $filtro);
+    if ($result) {
+        echo "Número já cadastrado.";
+        exit;
+    }
+
     if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
         $nomeArquivo = $_POST['numero'] . ".jpeg";
         $caminhoTemporario = $_FILES["foto"]["tmp_name"];
         $caminhoDestino = "../../Archives/photos/" . $nomeArquivo;
-    
-        // Move o arquivo da pasta temporária para o destino final
         if (move_uploaded_file($caminhoTemporario, $caminhoDestino)) {
-          echo "Imagem enviada e salva com sucesso.";
+            echo "Imagem enviada e salva com sucesso.";
         } else {
-          echo "Erro ao salvar a imagem.";
+            echo "Erro ao salvar a imagem.";
         }
-      } else {
+    } else {
         echo "Erro no envio da imagem.";
-      }
-    // Recebe os dados do formulário
-    // Recebe os dados do formulário
+    }
+
     $dados = array(
         "nome" => $_POST['nome'],
         "numero" => $_POST['numero'],
         "lote_fk" => $_POST['lote_fk'],
         "raca_fk" => $_POST['raca_fk'],
         "fornecedor_fk" => $_POST['fornecedor_fk'],
+        "nascimento" => $_POST['nascimento'],
         "pai" => $_POST['pai'],
         "mae" => $_POST['mae'],
         "sexo" => $_POST['sexo'],
@@ -35,7 +40,6 @@ if ($_POST) {
         "tem_nota" => !empty($_POST['tem_nota']) ? $_POST['tem_nota'] : 0
     );
 
-    // Query de inserção
     $objDB->create('tb_animal', $dados);
     header('Location: lista_animal.php');
     exit;
@@ -66,6 +70,11 @@ if ($_POST) {
             <div class="form-group">
                 <label for="numero">Número:</label>
                 <input type="number" id="numero" name="numero" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nascimento">Nascimento: </label>
+                <input type="date" id="nascimento" name="nascimento" required>
             </div>
 
             <div class="form-group">
@@ -132,7 +141,7 @@ if ($_POST) {
                     <input type="radio" id="sexo" name="sexo" value="1">
                     Fêmea
                 </label>
-              
+
             </div>
 
             <div class="form-group">
@@ -144,8 +153,8 @@ if ($_POST) {
                 <label for="foto">Foto: </label>
                 <input type="file" id="foto" name="foto">
             </div>
-                
-                </br>
+
+            </br>
 
 
             <input type="submit" value="Cadastrar">
@@ -161,6 +170,7 @@ if ($_POST) {
             const lote_fk = form.lote_fk.value.trim();
             const sexo = form.sexo.value.trim();
             const numero = form.numero.value.trim();
+            const nascimento = form.nascimento.value.trim();
             const tem_nota = form.tem_nota.value.trim();
 
             if (nome === '') {
@@ -182,6 +192,11 @@ if ($_POST) {
             }
             if (numero === '') {
                 alert('Por favor, preencha o campo numero.');
+                return;
+            }
+
+            if (nascimento === '') {
+                alert('Por favor, preencha o campo nascimento.');
                 return;
             }
 

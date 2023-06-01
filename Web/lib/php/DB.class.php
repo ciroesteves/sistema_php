@@ -52,7 +52,7 @@ class DB
 
   public function readWhere($tabela, $filtro)
   {
-    $stmt = $this->conn->prepare("SELECT * FROM $tabela");
+    $stmt = $this->conn->prepare("SELECT * FROM $tabela WHERE $filtro");
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;

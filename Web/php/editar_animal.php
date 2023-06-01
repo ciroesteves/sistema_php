@@ -10,20 +10,20 @@ if ($_POST) {
         $nomeArquivo = $_POST['numero'] . ".jpeg";
         $caminhoTemporario = $_FILES["foto"]["tmp_name"];
         $caminhoDestino = "../../Archives/photos/" . $nomeArquivo;
-    
-        // Move o arquivo da pasta temporária para o destino final
+
         if (move_uploaded_file($caminhoTemporario, $caminhoDestino)) {
-          echo "Imagem enviada e salva com sucesso.";
+            echo "Imagem enviada e salva com sucesso.";
         } else {
-          echo "Erro ao salvar a imagem.";
+            echo "Erro ao salvar a imagem.";
         }
-      } else {
+    } else {
         echo "Erro no envio da imagem.";
-      }
+    }
 
     $dados = array(
         "nome" => $_POST['nome'],
-        "numero" => $_POST['numero'],
+        "numero" => $result['id'],
+        "nascimento" => $_POST['nascimento'],
         "lote_fk" => $_POST['lote_fk'],
         "raca_fk" => $_POST['raca_fk'],
         "fornecedor_fk" => $_POST['fornecedor_fk'],
@@ -65,8 +65,8 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="numero">Número:</label>
-                <input type="number" id="numero" name="numero" value="<?php echo $result['numero']; ?>" required>
+                <label for="nascimento">Nascimento: </label>
+                <input type="date" id="nascimento" name="nascimento" value="<?php echo $result['nascimento']; ?>" required>
             </div>
 
             <div class="form-group">
@@ -110,15 +110,33 @@ if ($_POST) {
                     ?>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="pai">Pai: </label>
-                <input type="number" id="pai" name="pai" value="<?php echo $result['pai']; ?>">
+                <select name="pai" id="pai">
+                    <?php
+                    echo '<option value="">Selecione</option>';
+                    $pais = $objDB->readWhere('tb_animal', 'sexo = 2');
+                    foreach ($pais as $pai) {
+                        $selected = ($pai['id'] == $result['pai']) ? 'selected' : '';
+                        echo "<option value='" . $pai['id'] . "' $selected>" . $pai['numero'] . " - " . $pai['nome'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="mae">Mãe: </label>
-                <input type="number" id="mae" name="mae" value="<?php echo $result['mae']; ?>">
+                <select name="mae" id="mae">
+                    <?php
+                    echo '<option value="">Selecione</option>';
+                    $maes = $objDB->readWhere('tb_animal', 'sexo = 1');
+                    foreach ($maes as $mae) {
+                        $selected = ($mae['id'] == $result['mae']) ? 'selected' : '';
+                        echo "<option value='" . $mae['id'] . "' $selected>" . $mae['numero'] . " - " . $mae['nome'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">
@@ -136,7 +154,7 @@ if ($_POST) {
                     <input type="radio" id="sexo" name="sexo" value="1" <?= $selected = ($result['sexo'] == 1) ? 'checked' : ''; ?>>
                     Fêmea
                 </label>
-              
+
             </div>
 
             <div class="form-group">
@@ -148,8 +166,8 @@ if ($_POST) {
                 <label for="foto">Foto: </label>
                 <input type="file" id="foto" name="foto">
             </div>
-                
-                </br>
+
+            </br>
 
 
             <input type="submit" value="Editar">
@@ -164,7 +182,7 @@ if ($_POST) {
             const raca_fk = form.raca_fk.value.trim();
             const lote_fk = form.lote_fk.value.trim();
             const sexo = form.sexo.value.trim();
-            const numero = form.numero.value.trim();
+            const nascimento = form.nascimento.value.trim();
             const tem_nota = form.tem_nota.value.trim();
 
             if (nome === '') {
@@ -184,8 +202,9 @@ if ($_POST) {
                 alert('Por favor, preencha o campo sexo.');
                 return;
             }
-            if (numero === '') {
-                alert('Por favor, preencha o campo numero.');
+
+            if (nascimento === '') {
+                alert('Por favor, preencha o campo nascimento.');
                 return;
             }
 
