@@ -55,7 +55,6 @@ if ($_POST) {
                 <label for="tipo">Tipo:</label>
                 <select id="tipo" name="tipo">
                     <?php
-                    // Chama a função que retorna a lista de funcionários do banco de dados
                     $fornecedores = $objDB->readAll('tb_tipo_fornecedor');
                     foreach ($fornecedores as $fornecedor) {
                         $selected = ($fornecedor['id'] == $result['tipo']) ? 'selected' : '';

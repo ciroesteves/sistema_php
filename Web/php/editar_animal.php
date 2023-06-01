@@ -61,22 +61,23 @@ if ($_POST) {
         <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+                <input type="text" id="nome" name="nome" value="<?php echo $result['nome']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="numero">Número:</label>
-                <input type="number" id="numero" name="numero" required>
+                <input type="number" id="numero" name="numero" value="<?php echo $result['numero']; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="lote_fk">Lote:</label>
                 <select name="lote_fk" id="lote_fk">
                     <?php
-                    echo '<option value="" checked>Selecione</option>';
+                    echo '<option value="">Selecione</option>';
                     $lotes = $objDB->readAll('tb_lote');
                     foreach ($lotes as $lote) {
-                        echo '<option value="' . $lote['id'] . '" >' . $lote['lote'] . '</option>';
+                        $selected = ($lote['id'] == $result['lote_fk']) ? 'selected' : '';
+                        echo "<option value='" . $lote['id'] . "' $selected>" . $lote['lote'] . '</option>';
                     }
                     ?>
                 </select>
@@ -86,10 +87,11 @@ if ($_POST) {
                 <label for="raca_fk">Raça:</label>
                 <select name="raca_fk" id="raca_fk">
                     <?php
-                    echo '<option value="" checked>Selecione</option>';
+                    echo '<option value="">Selecione</option>';
                     $racas = $objDB->readAll('tb_raca');
                     foreach ($racas as $raca) {
-                        echo '<option value="' . $raca['id'] . '" >' . $raca['raca'] . '</option>';
+                        $selected = ($raca['id'] == $result['raca_fk']) ? 'selected' : '';
+                        echo "<option value='" . $raca['id'] . "' $selected>" . $raca['raca'] . '</option>';
                     }
                     ?>
                 </select>
@@ -99,38 +101,39 @@ if ($_POST) {
                 <label for="fornecedor_fk">Fornecedor:</label>
                 <select name="fornecedor_fk" id="fornecedor_fk">
                     <?php
-                    echo '<option value="" checked>Selecione</option>';
+                    echo '<option value="">Selecione</option>';
                     $fornecedores = $objDB->readAll('tb_fornecedor');
                     foreach ($fornecedores as $fornecedor) {
-                        echo '<option value="' . $fornecedor['id'] . '" >' . $fornecedor['nome'] . '</option>';
+                        $selected = ($fornecedor['id'] == $result['fornecedor_fk']) ? 'selected' : '';
+                        echo "<option value='" . $fornecedor['id'] . "' $selected>" . $fornecedor['nome'] . '</option>';
                     }
                     ?>
                 </select>
             </div>
-
+            
             <div class="form-group">
                 <label for="pai">Pai: </label>
-                <input type="number" id="pai" name="pai">
+                <input type="number" id="pai" name="pai" value="<?php echo $result['pai']; ?>">
             </div>
 
             <div class="form-group">
                 <label for="mae">Mãe: </label>
-                <input type="number" id="mae" name="mae">
+                <input type="number" id="mae" name="mae" value="<?php echo $result['mae']; ?>">
             </div>
 
             <div class="form-group">
                 <label for="descricao">Descrição: </label>
-                <input type="text" id="descricao" name="descricao">
+                <input type="text" id="descricao" name="descricao" value="<?php echo $result['descricao']; ?>">
             </div>
 
             <div class="form-group">
                 <label>Sexo: </label>
                 <label>
-                    <input type="radio" id="sexo" name="sexo" value="2" checked>
+                    <input type="radio" id="sexo" name="sexo" value="2" <?= $selected = ($result['sexo'] == 2) ? 'checked' : ''; ?>>
                     Macho
                 </label>
                 <label>
-                    <input type="radio" id="sexo" name="sexo" value="1">
+                    <input type="radio" id="sexo" name="sexo" value="1" <?= $selected = ($result['sexo'] == 1) ? 'checked' : ''; ?>>
                     Fêmea
                 </label>
               
@@ -138,7 +141,7 @@ if ($_POST) {
 
             <div class="form-group">
                 <label for="tem_nota">Tem nota?</label>
-                <input type="checkbox" id="tem_nota" name="tem_nota" value="1" checked>
+                <input type="checkbox" id="tem_nota" name="tem_nota" value="1" <?= $selected = ($result['tem_nota'] == 1) ? 'checked' : ''; ?>>
             </div>
 
             <div class="form-group">
@@ -149,7 +152,7 @@ if ($_POST) {
                 </br>
 
 
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Editar">
         </form>
     </div>
     <script>
