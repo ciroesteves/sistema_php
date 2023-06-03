@@ -34,7 +34,9 @@ if ($_POST) {
                 <label for="lote">Lote:</label>
                 <input type="text" id="lote" name="lote" required>
             </div>
-            <input type="submit" value="Cadastrar">
+            <div class="form-group">
+                <button type="submit">Cadastrar</button>
+            </div>
         </form>
     </div>
     <script>

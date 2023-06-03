@@ -37,9 +37,11 @@ if ($_POST) {
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
-                <input type="text" id="descricao" name="descricao">
+                <textarea id="descricao" name="descricao"></textarea>
             </div>
-            <input type="submit" value="Cadastrar">
+            <div class="form-group">
+                <button type="submit">Cadastrar</button>
+            </div>
         </form>
     </div>
     <script>

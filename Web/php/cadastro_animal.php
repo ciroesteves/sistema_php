@@ -65,9 +65,7 @@ if ($_POST) {
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" required>
-            </div>
 
-            <div class="form-group">
                 <label for="numero">Número:</label>
                 <input type="number" id="numero" name="numero" required>
             </div>
@@ -136,15 +134,12 @@ if ($_POST) {
 
                 <label for="tem_nota">Tem nota?</label>
                 <input type="checkbox" id="tem_nota" name="tem_nota" value="1" checked>
+
+                <label>Foto:</label>
+                <label for="foto" class="input-file-button">Escolher imagem</label>
+                <input type="file" id="foto" name="foto" class="input-file">
+                
             </div>
-
-            <div class="form-group">
-                <label for="foto">Foto:</label>
-                <input type="file" id="foto" name="foto">
-            </div>
-
-            </br>
-
 
             <div class="form-group">
                 <button type="submit">Cadastrar</button>

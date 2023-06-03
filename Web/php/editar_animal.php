@@ -62,10 +62,8 @@ if ($_POST) {
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" value="<?php echo $result['nome']; ?>" required>
-            </div>
 
-            <div class="form-group">
-                <label for="nascimento">Nascimento: </label>
+                <label for="nascimento">Nascimento:</label>
                 <input type="date" id="nascimento" name="nascimento" value="<?php echo $result['nascimento']; ?>" required>
             </div>
 
@@ -81,9 +79,7 @@ if ($_POST) {
                     }
                     ?>
                 </select>
-            </div>
 
-            <div class="form-group">
                 <label for="raca_fk">Raça:</label>
                 <select name="raca_fk" id="raca_fk">
                     <?php
@@ -95,9 +91,7 @@ if ($_POST) {
                     }
                     ?>
                 </select>
-            </div>
 
-            <div class="form-group">
                 <label for="fornecedor_fk">Fornecedor:</label>
                 <select name="fornecedor_fk" id="fornecedor_fk">
                     <?php
@@ -112,7 +106,7 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="pai">Pai: </label>
+                <label for="pai">Pai:</label>
                 <select name="pai" id="pai">
                     <?php
                     echo '<option value="">Selecione</option>';
@@ -123,10 +117,8 @@ if ($_POST) {
                     }
                     ?>
                 </select>
-            </div>
 
-            <div class="form-group">
-                <label for="mae">Mãe: </label>
+                <label for="mae">Mãe:</label>
                 <select name="mae" id="mae">
                     <?php
                     echo '<option value="">Selecione</option>';
@@ -140,37 +132,31 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="descricao">Descrição: </label>
-                <input type="text" id="descricao" name="descricao" value="<?php echo $result['descricao']; ?>">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"><?php echo $result['descricao']; ?></textarea>
             </div>
 
             <div class="form-group">
-                <label>Sexo: </label>
-                <label>
-                    <input type="radio" id="sexo" name="sexo" value="2" <?= $selected = ($result['sexo'] == 2) ? 'checked' : ''; ?>>
-                    Macho
-                </label>
-                <label>
-                    <input type="radio" id="sexo" name="sexo" value="1" <?= $selected = ($result['sexo'] == 1) ? 'checked' : ''; ?>>
-                    Fêmea
-                </label>
+                <label for="sexo">Sexo:</label>
+                <div class="radio-button-container">
+                    <input type="radio" id="femea" name="sexo" value="1" checked>
+                    <label for="femea">Fêmea</label>
+                    <input type="radio" id="macho" name="sexo" value="2">
+                    <label for="macho">Macho</label>
+                </div>
 
-            </div>
-
-            <div class="form-group">
                 <label for="tem_nota">Tem nota?</label>
                 <input type="checkbox" id="tem_nota" name="tem_nota" value="1" <?= $selected = ($result['tem_nota'] == 1) ? 'checked' : ''; ?>>
+
+
+                <label>Foto:</label>
+                <label for="foto" class="input-file-button">Escolher imagem</label>
+                <input type="file" id="foto" name="foto" class="input-file">
             </div>
 
             <div class="form-group">
-                <label for="foto">Foto: </label>
-                <input type="file" id="foto" name="foto">
+                <button type="submit">Editar</button>
             </div>
-
-            </br>
-
-
-            <input type="submit" value="Editar">
         </form>
     </div>
     <script>

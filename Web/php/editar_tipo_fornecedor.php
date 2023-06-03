@@ -44,12 +44,14 @@ if (!empty($_POST['excluir'])) {
                 <label for="tipo">Tipo:</label>
                 <input type="text" id="tipo" name="tipo" value="<?php echo $result['tipo']; ?>" required>
             </div>
-            <input type="submit" value="Editar">
+            <div class="form-group">
+            <button type="submit">Editar</button>
+            </div>
         </form>
         <form method="POST" style="display: none;">
             <input hidden type="text" id="id" name="id" value="<?php echo $result['id']; ?>">
             <input hidden type="text" id="excluir" name="excluir" value="1">
-            <input id="excluir" type="submit" value="Excluir">
+            <button id="excluir" type="submit">Excluir</button>
         </form>
     </div>
     <script>

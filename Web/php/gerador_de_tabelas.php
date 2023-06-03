@@ -20,7 +20,7 @@ function gerar_tabela($tabela, $coluna, $titulo, $botao = null)
             <table class='table table-striped'>
             <thead>
                 <tr>
-                <th>Tipo</th>
+                <th></th>
                 <th></th>
                 </tr>
             </thead>

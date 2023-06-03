@@ -98,13 +98,13 @@ p {
 	display: inline-block;
 	position: relative;
 	height: 30px;
-  }
-  
-  .radio-button-container input[type="radio"] {
+}
+
+.radio-button-container input[type="radio"] {
 	display: none;
-  }
-  
-  .radio-button-container label {
+}
+
+.radio-button-container label {
 	display: inline-block;
 	padding: 5px 15px;
 	background-color: #f5f5f5;
@@ -112,10 +112,29 @@ p {
 	cursor: pointer;
 	border-radius: 15px;
 	transition: background-color 0.3s ease;
-  }
-  
-  .radio-button-container input[type="radio"]:checked + label {
+}
+
+.radio-button-container input[type="radio"]:checked+label {
 	background-color: #007bff;
 	color: #ffffff;
-  }
-  
+}
+
+.input-file-container {
+	position: relative;
+	display: inline-block;
+}
+
+.input-file {
+	display: none;
+}
+
+.input-file-button {
+	padding: 10px 15px;
+	background-color: #e5e5e5;
+	color: #333;
+	cursor: pointer;
+}
+
+.input-file-button:hover {
+	background-color: #ccc;
+}

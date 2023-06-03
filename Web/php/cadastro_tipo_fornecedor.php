@@ -34,7 +34,9 @@ if ($_POST) {
                 <label for="tipo">Tipo:</label>
                 <input type="text" id="tipo" name="tipo" required>
             </div>
-            <input type="submit" value="Cadastrar">
+            <div class="form-group">
+                <button type="submit">Cadastrar</button>
+            </div>
         </form>
     </div>
     <script>

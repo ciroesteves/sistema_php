@@ -8,16 +8,16 @@ require_once './navegador.php';
   <meta charset="UTF-8">
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../../Style/relatorios.css">
 </head>
 
 <body>
   <div class="container mt-5 col-10" style="width: auto;">
     <div class="row">
       <h1 class="col-md-6">Fornecedores</h1>
-      <div class="col-md-6 text-right"> 
+      <div class="col-md-6 text-right">
         <button class='btn btn-success' onclick="location.href ='cadastro_fornecedor.php';">Novo fornecedor</button>
       </div>
-      
     </div>
 
     <table class="table table-striped">
@@ -33,14 +33,11 @@ require_once './navegador.php';
       </thead>
       <tbody>
         <?php
-        // inclui a classe de banco de dados
+
         include_once '../lib/php/DB.class.php';
-        
-        // instancia um objeto da classe Database
+
         $objDB = new DB();
         $objDB->connect();
-
-        // seleciona todos os registros da tabela funcionarios
         $results = $objDB->readAll('tb_fornecedor');
 
         foreach ($results as $row) {

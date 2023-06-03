@@ -47,14 +47,17 @@ if (!empty($_POST['excluir'])) {
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
-                <input type="text" id="descricao" name="descricao" value="<?php echo $result['descricao']; ?>">
+                <textarea id="descricao" name="descricao"><?php echo $result['descricao']; ?></textarea>
             </div>
-            <input type="submit" value="Editar">
+            <div class="form-group">
+                <button type="submit">Editar</button>
+            </div>
+            
         </form>
         <form method="POST" style="display: none;">
             <input hidden type="text" id="id" name="id" value="<?php echo $result['id']; ?>">
             <input hidden type="text" id="excluir" name="excluir" value="1">
-            <input id="excluir" type="submit" value="Excluir">
+            <button id="excluir" type="submit">Excluir</button>
         </form>
     </div>
     <script>
