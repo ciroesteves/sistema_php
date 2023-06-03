@@ -1,8 +1,6 @@
 <?php
 require_once './navegador.php';
 require_once '../lib/php/DB.class.php';
-
-
 $objDB = new DB();
 $objDB->connect();
 
@@ -25,7 +23,7 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
   <link rel="stylesheet" type="text/css" href="../../Style/perfil.css">
 </head>
 
-<body>
+<body class="corpo">
   <div class="profile-container">
     <div class="header">
       <div class="picture">

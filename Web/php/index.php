@@ -23,7 +23,7 @@ $totalFornecedores = $totalFornecedores['COUNT(*)'];
     <script src="grafico.js"></script>
 </head>
 
-<body>
+<body class="corpo">
     <div id="content" class="container">
         <div id="totals" class="row">
             <div class="card-group">

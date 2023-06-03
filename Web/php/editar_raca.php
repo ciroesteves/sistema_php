@@ -1,5 +1,6 @@
 <?php
 require_once '../lib/php/DB.class.php';
+include_once 'navegador.php';
 $objDB = new DB();
 $objDB->connect();
 
@@ -32,7 +33,7 @@ if (!empty($_POST['excluir'])) {
     <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
 </head>
 
-<body>
+<body class="corpo">
     <div class="container">
         <div class="row">
             <div class="col-md-2 text-right">

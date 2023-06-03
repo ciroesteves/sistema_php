@@ -1,5 +1,6 @@
 <?php
 require_once '../lib/php/DB.class.php';
+include_once 'navegador.php';
 $objDB = new DB();
 $objDB->connect();
 
@@ -32,7 +33,7 @@ if ($_POST) {
     <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
 </head>
 
-<body>
+<body class="corpo">
     <div class="container">
     <div class="row">
       <div class="col-md-2 text-right"> 
@@ -74,9 +75,11 @@ if ($_POST) {
                 <input type="text" id="telefone" name="telefone" value="<?php echo $result['telefone']; ?>">
             </div>
 
-            <input type="submit" value="Editar">
+            <div class="form-group">
+                <button type="submit">Editar</button>
+            </div>
         </form>
-        <form method="POST" action="excluir_fornecedor.php">
+        <form method="POST" action="excluir_fornecedor.php" style="display:none">
             <input hidden type="text" id="id" name="id" value="<?php echo $result['id']; ?>">
             <input id="excluir" type="submit" value="Excluir">
         </form>

@@ -49,7 +49,7 @@ $relatorio = $objDB->readWhere('tb_animal', $filtro);
   <link rel="stylesheet" type="text/css" href="../../Style/relatorios.css">
 </head>
 
-<body>
+<body class="corpo">
   <div class="container">
     <h2>Formulário de Consulta</h2>
     <form action="lista_animal.php" method="POST">

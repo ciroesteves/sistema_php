@@ -11,7 +11,7 @@ require_once './navegador.php';
   <link rel="stylesheet" type="text/css" href="../../Style/relatorios.css">
 </head>
 
-<body>
+<body class="corpo">
   <div class="container mt-5 col-10" style="width: auto;">
     <div class="row">
       <h1 class="col-md-6">Fornecedores</h1>
