@@ -22,130 +22,103 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
   <meta charset="UTF-8">
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    .card {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      padding: 0;
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    .card h2 {
-      margin-top: 0;
-    }
-
-    .card p {
-      margin: 0;
-    }
-
-    .teste {
-      display: flex;
-      justify-content: space-around;
-
-    }
-
-    table {
-      border-collapse: collapse;
-    }
-
-    table,
-    th,
-    td {
-      border: 1px solid black;
-    }
-
-    th,
-    td {
-      padding: 5px;
-      width: 200px;
-    }
-
-    th {
-      background-color: lightgray;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="../../Style/perfil.css">
 </head>
 
 <body>
-  <div class="row teste">
-    <div class="card col-md-2">
-      <img src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../Archives/imagem.jpeg' ?>" alt="Foto do Usuário">
+  <div class="profile-container">
+    <div class="header">
+      <div class="picture">
+        <img class="imagem-perfil" src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../Archives/imagem_aux.jpeg' ?>" alt="Foto do Usuário">
+      </div>
+
+      <div class="info">
+        <h2><?= $animal['numero'] ?> - <?= $animal['nome'] ?></h2>
+        <p><strong>Nascimento:</strong>
+          <?php
+          $data = DateTime::createFromFormat('Y-m-d', $animal['nascimento']);
+          echo date_format($data, "d/m/Y");
+          ?>
+        </p>
+        <p><strong>Peso: </strong> 320 kg / 10,8@</p>
+        <p><strong>Sexo: </strong><?php echo $sexo = $animal['sexo'] == 1 ? 'Fêmea' : 'Macho'; ?></p>
+        <p><strong>Raça: </strong><?= $animal['raca'] ?></p>
+        <p><strong>Lote: </strong><?= $animal['lote'] ?></p>
+        <p><strong>Tem Nota: </strong><?php echo $vacina = $animal['tem_nota'] == 1 ? 'Sim' : 'Não'; ?></p>
+        <p><strong>Pai: </strong><?= $result = $resultPai ? $resultPai['nome'] : ''; ?></p>
+        <p><strong>Mãe: </strong><?= $result = $resultMae ? $resultMae['nome'] : ''; ?></p>
+      </div>
+
     </div>
-    <div class="card col-md-3">
 
-      <h2><?= $animal['numero'] ?> - <?= $animal['nome'] ?></h2>
-      <p><strong>Nascimento:</strong>
-        <?php
-        $data = DateTime::createFromFormat('Y-m-d', $animal['nascimento']);
-        echo date_format($data, "d/m/Y");
-        ?>
-      </p>
-      <p><strong>Peso: </strong> 320 kg / 10,8@</p>
-      <p><strong>Sexo: </strong><?php echo $sexo = $animal['sexo'] == 1 ? 'Fêmea' : 'Macho'; ?></p>
-      <p><strong>Raça: </strong><?= $animal['raca'] ?></p>
-      <p><strong>Lote: </strong><?= $animal['lote'] ?></p>
-      <p><strong>Tem Nota: </strong><?php echo $vacina = $animal['tem_nota'] == 1 ? 'Sim' : 'Não'; ?></p>
-      <p><strong>Pai: </strong><?= $result = $resultPai ? $resultPai['nome'] : ''; ?></p>
-      <p><strong>Mãe: </strong><?= $result = $resultMae ? $resultMae['nome'] : '';?></p>
+    <div class="content">
+      <div class="section">
+        <h2>Descrição</h2>
+        <p><?= $animal['descricao'] ?></p>
+      </div>
     </div>
-  </div>
 
+    <div class="content">
+      <div class="section">
+        <h2>Pesagem</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>15/05/2023</td>
+              <td>450 kg</td>
+            </tr>
+            <tr>
+              <td>15/06/2023</td>
+              <td>520 kg</td>
+            </tr>
+            <tr>
+              <td>15/06/2023</td>
+              <td>520 kg</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="card">
-    <h2>Descrição</h2>
-    <p><?= $animal['descricao'] ?></p>
-  </div>
+      <div class="section">
+        <h2>Vacinação</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Vacina</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Brucelose</td>
+              <td>14/05/23</td>
+            </tr>
+            <tr>
+              <td>Raiva</td>
+              <td>14/05/23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>Pesagem</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>15/04/22</th>
-          <th>15/06/23</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>320 kg</td>
-          <td>450 kg</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="content">
+      <div class="section">
+        <h2>Histórico</h2>
+        <ul>
+          <li><strong>10/02/2023 - Cruzamento:</strong><span>Foi avistado cruzamento com o touro X.</span></li>
+          <li><strong>05/02/2023 - Alerta:</strong></span>Fugiu do pasto e foi encontrada em Quirino.</span></li>
+        </ul>
 
-  <div class="card">
-    <h2>Vacinação</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Vacina</th>
-          <th>Data</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Brucelose</td>
-          <td>14/05/23</td>
-        </tr>
-        <tr>
-          <td>Raiva</td>
-          <td>14/05/23</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>Histórico</h2>
-    <p><strong>10/02/2023</strong> - <strong>Cruzamento:</strong> Foi avistado cruzamento com o touro X.</p>
-    <p><strong>05/02/2023</strong> - <strong>Alerta:</strong> Fugiu do pasto e foi encontrada em Quirino.</p>
   </div>
 </body>
 

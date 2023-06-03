@@ -1,0 +1,121 @@
+/* Estilos gerais */
+body {
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+p {
+	line-height: 1.5;
+	margin-bottom: 10px;
+}
+
+/* Estilos específicos para formulários */
+.container {
+	max-width: 70%;
+	margin: 50px auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+}
+
+.form-group textarea {
+	flex: 1;
+	width: 100%;
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.form-group button {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	background-color: #4caf50;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.form-group button:hover {
+	background-color: #45a049;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.form-group label {
+	margin-left: 25px;
+	width: 150px;
+	font-weight: bold;
+}
+
+.form-group input {
+	flex: 1;
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.form-group select {
+	flex: 1;
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.radio-button-container {
+	display: inline-block;
+	position: relative;
+	height: 30px;
+  }
+  
+  .radio-button-container input[type="radio"] {
+	display: none;
+  }
+  
+  .radio-button-container label {
+	display: inline-block;
+	padding: 5px 15px;
+	background-color: #f5f5f5;
+	color: #333333;
+	cursor: pointer;
+	border-radius: 15px;
+	transition: background-color 0.3s ease;
+  }
+  
+  .radio-button-container input[type="radio"]:checked + label {
+	background-color: #007bff;
+	color: #ffffff;
+  }
+  

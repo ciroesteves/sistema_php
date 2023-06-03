@@ -1,0 +1,185 @@
+<div class="dog-profile-container">
+    <div class="dog-profile-header">
+      <div class="dog-profile-picture">
+        <img src="dog-avatar.jpg" alt="Dog Profile Picture">
+      </div>
+      <div class="dog-profile-info">
+        <h1 class="dog-profile-name">Max</h1>
+        <p class="dog-profile-breed">Golden Retriever</p>
+        <ul class="dog-profile-details">
+          <li><strong>Age:</strong> 3 years</li>
+          <li><strong>Weight:</strong> 30 kg</li>
+          <li><strong>Gender:</strong> Male</li>
+        </ul>
+      </div>
+    </div>
+    <div class="dog-profile-content">
+      <div class="dog-profile-section">
+        <h2>About Max</h2>
+        <p>Max is a friendly and playful Golden Retriever. He loves going for long walks and playing fetch in the park.</p>
+      </div>
+      <div class="dog-profile-section">
+        <h2>Vaccination History</h2>
+        <ul>
+          <li><strong>Rabies:</strong> March 2022</li>
+          <li><strong>DHPP:</strong> January 2023</li>
+          <li><strong>Bordetella:</strong> February 2023</li>
+        </ul>
+      </div>
+      <div class="dog-profile-section">
+        <h2>Breed Information</h2>
+        <p>Golden Retrievers are known for their friendly and gentle nature. They are great family pets and are highly trainable.</p>
+      </div>
+      <div class="dog-profile-section">
+        <h2>Coat and Grooming</h2>
+        <p>Max has a thick and lustrous golden coat. Regular brushing and occasional bathing are necessary to keep his coat healthy and shiny.</p>
+      </div>
+      <div class="dog-profile-section">
+        <h2>Contact Information</h2>
+        <ul>
+          <li><strong>Owner:</strong> John Doe</li>
+          <li><strong>Email:</strong> john.doe@example.com</li>
+          <li><strong>Phone:</strong> (123) 456-7890</li>
+        </ul>
+      </div>
+      <div class="dog-profile-section">
+        <h2>Vaccination History</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Vaccine</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="table-icon vaccine-icon"></span><span class="vaccine-label">Rabies</span></td>
+              <td><span class="table-icon date-icon"></span><span class="date-label">March 2022</span></td>
+            </tr>
+            <tr>
+              <td><span class="table-icon vaccine-icon"></span><span class="vaccine-label">DHPP</span></td>
+              <td><span class="table-icon date-icon"></span><span class="date-label">January 2023</span></td>
+            </tr>
+            <tr>
+              <td><span class="table-icon vaccine-icon"></span><span class="vaccine-label">Bordetella</span></td>
+              <td><span class="table-icon date-icon"></span><span class="date-label">February 2023</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <style>
+.dog-profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dog-profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dog-profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dog-profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dog-profile-info {
+  margin-left: 20px;
+}
+
+.dog-profile-name {
+  margin: 0;
+  font-size: 24px;
+  color: #333333;
+}
+
+.dog-profile-breed {
+  margin: 0;
+  font-size: 14px;
+  color: #999999;
+}
+
+.dog-profile-details {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dog-profile-details li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.dog-profile-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.dog-profile-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dog-profile-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #333333;
+}
+
+.dog-profile-section p {
+  margin: 0;
+  font-size: 16px;
+  color: #666666;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #666666;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+  </style>

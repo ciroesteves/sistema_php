@@ -20,7 +20,7 @@ if ($_POST) {
 <head>
     <meta charset="UTF=8" />
     <title>Fazenda</title>
-    <link rel="stylesheet" type="text/css" href="../../Style/formulario_cadastro.css">
+    <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
 </head>
 <body>
     <div class="container">

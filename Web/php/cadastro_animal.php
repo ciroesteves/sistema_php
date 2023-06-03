@@ -50,7 +50,7 @@ if ($_POST) {
 <head>
     <meta charset="UTF=8" />
     <title>Fazenda</title>
-    <link rel="stylesheet" type="text/css" href="../../Style/formulario_cadastro.css">
+    <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
 </head>
 
 <body>
@@ -73,11 +73,9 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="nascimento">Nascimento: </label>
+                <label for="nascimento">Nascimento:</label>
                 <input type="date" id="nascimento" name="nascimento" required>
-            </div>
 
-            <div class="form-group">
                 <label for="lote_fk">Lote:</label>
                 <select name="lote_fk" id="lote_fk">
                     <?php
@@ -101,9 +99,7 @@ if ($_POST) {
                     }
                     ?>
                 </select>
-            </div>
 
-            <div class="form-group">
                 <label for="fornecedor_fk">Fornecedor:</label>
                 <select name="fornecedor_fk" id="fornecedor_fk">
                     <?php
@@ -117,47 +113,42 @@ if ($_POST) {
             </div>
 
             <div class="form-group">
-                <label for="pai">Pai: </label>
+                <label for="pai">Pai:</label>
                 <input type="number" id="pai" name="pai">
-            </div>
 
-            <div class="form-group">
-                <label for="mae">Mãe: </label>
+                <label for="mae">Mãe:</label>
                 <input type="number" id="mae" name="mae">
             </div>
 
             <div class="form-group">
-                <label for="descricao">Descrição: </label>
-                <input type="text" id="descricao" name="descricao">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"></textarea>
             </div>
 
             <div class="form-group">
-                <label>Sexo: </label>
-                <label>
-                    <input type="radio" id="sexo" name="sexo" value="2" checked>
-                    Macho
-                </label>
-                <label>
-                    <input type="radio" id="sexo" name="sexo" value="1">
-                    Fêmea
-                </label>
+                <label for="sexo">Sexo:</label>
+                <div class="radio-button-container">
+                    <input type="radio" id="femea" name="sexo" value="1" checked>
+                    <label for="femea">Fêmea</label>
+                    <input type="radio" id="macho" name="sexo" value="2">
+                    <label for="macho">Macho</label>
+                </div>
 
-            </div>
-
-            <div class="form-group">
                 <label for="tem_nota">Tem nota?</label>
                 <input type="checkbox" id="tem_nota" name="tem_nota" value="1" checked>
             </div>
 
             <div class="form-group">
-                <label for="foto">Foto: </label>
+                <label for="foto">Foto:</label>
                 <input type="file" id="foto" name="foto">
             </div>
 
             </br>
 
 
-            <input type="submit" value="Cadastrar">
+            <div class="form-group">
+                <button type="submit">Cadastrar</button>
+            </div>
         </form>
     </div>
     <script>
