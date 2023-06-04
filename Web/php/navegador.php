@@ -2,6 +2,7 @@
     <ul class="menu">
         <li><a href="index.php">Página Inicial</a></li>
         <li><a href="lista_animal.php">Animais</a></li>
+        <li><a href="cadastro_pesagem.php">Pesagem</a></li>
         <li><a href="lista_fornecedor.php">Fornecedores</a></li>
         <li><a href="tabelas_padrao.php">Tabelas Auxiliares</a></li>
     </ul>

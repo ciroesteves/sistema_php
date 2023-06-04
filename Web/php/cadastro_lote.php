@@ -23,7 +23,7 @@ if ($_POST) {
     <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
 </head>
 <body class="corpo">
-    <div class="container">
+    <div class="container-small">
 	<div class="row">
       <div class="col-md-2 text-right"> 
         <a onclick="location.href ='tabelas_padrao.php';">Voltar</a>

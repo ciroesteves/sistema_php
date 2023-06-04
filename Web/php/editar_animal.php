@@ -57,7 +57,7 @@ if ($_POST) {
             <div class="col-md-2 text-right">
                 <a onclick="location.href ='lista_animal.php';">Voltar</a>
             </div>
-            <h1 class="col-md-6">Cadastro de Animal</h1>
+            <h1 class="col-md-6">Edição de Animal</h1>
         </div>
         <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
@@ -66,6 +66,32 @@ if ($_POST) {
 
                 <label for="nascimento">Nascimento:</label>
                 <input type="date" id="nascimento" name="nascimento" value="<?php echo $result['nascimento']; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pai">Pai:</label>
+                <select name="pai" id="pai">
+                    <?php
+                    echo '<option value="">Selecione</option>';
+                    $pais = $objDB->readWhere('tb_animal', 'sexo = 2');
+                    foreach ($pais as $pai) {
+                        $selected = ($pai['id'] == $result['pai']) ? 'selected' : '';
+                        echo "<option value='" . $pai['id'] . "' $selected>" . $pai['numero'] . " - " . $pai['nome'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <label for="mae">Mãe:</label>
+                <select name="mae" id="mae">
+                    <?php
+                    echo '<option value="">Selecione</option>';
+                    $maes = $objDB->readWhere('tb_animal', 'sexo = 1');
+                    foreach ($maes as $mae) {
+                        $selected = ($mae['id'] == $result['mae']) ? 'selected' : '';
+                        echo "<option value='" . $mae['id'] . "' $selected>" . $mae['numero'] . " - " . $mae['nome'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">
@@ -101,32 +127,6 @@ if ($_POST) {
                     foreach ($fornecedores as $fornecedor) {
                         $selected = ($fornecedor['id'] == $result['fornecedor_fk']) ? 'selected' : '';
                         echo "<option value='" . $fornecedor['id'] . "' $selected>" . $fornecedor['nome'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="pai">Pai:</label>
-                <select name="pai" id="pai">
-                    <?php
-                    echo '<option value="">Selecione</option>';
-                    $pais = $objDB->readWhere('tb_animal', 'sexo = 2');
-                    foreach ($pais as $pai) {
-                        $selected = ($pai['id'] == $result['pai']) ? 'selected' : '';
-                        echo "<option value='" . $pai['id'] . "' $selected>" . $pai['numero'] . " - " . $pai['nome'] . '</option>';
-                    }
-                    ?>
-                </select>
-
-                <label for="mae">Mãe:</label>
-                <select name="mae" id="mae">
-                    <?php
-                    echo '<option value="">Selecione</option>';
-                    $maes = $objDB->readWhere('tb_animal', 'sexo = 1');
-                    foreach ($maes as $mae) {
-                        $selected = ($mae['id'] == $result['mae']) ? 'selected' : '';
-                        echo "<option value='" . $mae['id'] . "' $selected>" . $mae['numero'] . " - " . $mae['nome'] . '</option>';
                     }
                     ?>
                 </select>

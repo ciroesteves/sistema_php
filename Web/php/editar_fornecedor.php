@@ -19,10 +19,6 @@ if ($_POST) {
     header('Location: lista_fornecedor.php');
     exit;
 }
-
-
-
-
 ?>
 
 <html>
@@ -34,7 +30,7 @@ if ($_POST) {
 </head>
 
 <body class="corpo">
-    <div class="container">
+    <div class="container-small">
     <div class="row">
       <div class="col-md-2 text-right"> 
         <a onclick="location.href ='lista_fornecedor.php';">Voltar</a>
