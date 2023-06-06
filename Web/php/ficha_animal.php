@@ -12,6 +12,27 @@ $animal = $result->fetch();
 $resultPai = $objDB->read('tb_animal', $animal['pai']);
 $resultMae = $objDB->read('tb_animal', $animal['mae']);
 
+$filtro = " animal_fk = {$id} ORDER BY data desc";
+$resultPesagem = $objDB->readWhere('tb_pesagem', $filtro);
+$resultVacinacao = $objDB->readWhere('tb_vacinacao', $filtro);
+
+$tabelaPesagem = "";
+foreach($resultPesagem as $pesagem) {
+  $data =  date("d/m/Y", strtotime($pesagem['data']));
+  $tabelaPesagem .= "<tr>
+                      <td>{$data}</td>
+                      <td>{$pesagem['peso']} Kg</td>
+                    </tr>";
+}
+$tabelaVacinacao = "";
+foreach($resultVacinacao as $vacinacao) {
+  $data = date("d/m/Y", strtotime($vacinacao['data']));
+  $tabelaVacinacao .= "<tr>
+                        <td>{$vacinacao['vacina_fk']}</td>
+                        <td>{$data}</td>
+                      </tr>";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -55,7 +76,6 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
         <p><?= $animal['descricao'] ?></p>
       </div>
     </div>
-
     <div class="content">
       <div class="section">
         <h2>Pesagem</h2>
@@ -67,18 +87,7 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>15/05/2023</td>
-              <td>450 kg</td>
-            </tr>
-            <tr>
-              <td>15/06/2023</td>
-              <td>520 kg</td>
-            </tr>
-            <tr>
-              <td>15/06/2023</td>
-              <td>520 kg</td>
-            </tr>
+            <?= $tabelaPesagem ?>
           </tbody>
         </table>
       </div>
@@ -93,14 +102,7 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Brucelose</td>
-              <td>14/05/23</td>
-            </tr>
-            <tr>
-              <td>Raiva</td>
-              <td>14/05/23</td>
-            </tr>
+            <?= $tabelaVacinacao ?>
           </tbody>
         </table>
       </div>
