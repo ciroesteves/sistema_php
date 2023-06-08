@@ -1,0 +1,18 @@
+{
+    "name": "ciroe/fazenda",
+    "authors": [
+        {
+            "name": "ciroesteves",
+            "email": "ciro.esteves@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+
+        ],
+        "psr-4": {
+            "app\\":"app"
+        }
+    }
+}

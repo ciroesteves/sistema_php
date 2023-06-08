@@ -26,9 +26,10 @@ foreach($resultPesagem as $pesagem) {
 }
 $tabelaVacinacao = "";
 foreach($resultVacinacao as $vacinacao) {
+  $nomeVacina = $objDB->read('tb_vacina', $vacinacao['vacina_fk']);
   $data = date("d/m/Y", strtotime($vacinacao['data']));
   $tabelaVacinacao .= "<tr>
-                        <td>{$vacinacao['vacina_fk']}</td>
+                        <td>{$nomeVacina['vacina']}</td>
                         <td>{$data}</td>
                       </tr>";
 }
@@ -41,14 +42,14 @@ foreach($resultVacinacao as $vacinacao) {
   <meta charset="UTF-8">
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../../Style/perfil.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/perfil.css">
 </head>
 
 <body class="corpo">
   <div class="profile-container">
     <div class="header">
       <div class="picture">
-        <img class="imagem-perfil" src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../Archives/imagem_aux.jpeg' ?>" alt="Foto do Usuário">
+        <img class="imagem-perfil" src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../public/assets/imgs/imagem_aux.jpeg' ?>" alt="Foto do animal">
       </div>
 
       <div class="info">

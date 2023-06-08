@@ -24,7 +24,7 @@ if ($_POST) {
 <head>
     <meta charset="UTF=8" />
     <title>Fazenda</title>
-    <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
+    <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
 </head>
 <body class="corpo">
     <div class="container-small">

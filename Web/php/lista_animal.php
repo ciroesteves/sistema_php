@@ -45,8 +45,8 @@ $relatorio = $objDB->readWhere('tb_animal', $filtro);
   <meta charset="UTF-8">
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
-  <link rel="stylesheet" type="text/css" href="../../Style/relatorios.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/relatorios.css">
 </head>
 
 <body class="corpo">

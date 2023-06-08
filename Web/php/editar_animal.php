@@ -10,7 +10,7 @@ if ($_POST) {
     if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
         $nomeArquivo = $_POST['numero'] . ".jpeg";
         $caminhoTemporario = $_FILES["foto"]["tmp_name"];
-        $caminhoDestino = "../../Archives/photos/" . $nomeArquivo;
+        $caminhoDestino = "../../private/photos/" . $nomeArquivo;
 
         if (move_uploaded_file($caminhoTemporario, $caminhoDestino)) {
             echo "Imagem enviada e salva com sucesso.";
@@ -48,7 +48,7 @@ if ($_POST) {
 <head>
     <meta charset="UTF=8" />
     <title>Fazenda</title>
-    <link rel="stylesheet" type="text/css" href="../../Style/formularios.css">
+    <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
 </head>
 
 <body class="corpo">
