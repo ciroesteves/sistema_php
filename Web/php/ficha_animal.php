@@ -15,24 +15,50 @@ $resultMae = $objDB->read('tb_animal', $animal['mae']);
 $filtro = " animal_fk = {$id} ORDER BY data desc";
 $resultPesagem = $objDB->readWhere('tb_pesagem', $filtro);
 $resultVacinacao = $objDB->readWhere('tb_vacinacao', $filtro);
+$resultHistorico = $objDB->readWhere('tb_historico', $filtro);
 
 $tabelaPesagem = "";
-foreach($resultPesagem as $pesagem) {
-  $data =  date("d/m/Y", strtotime($pesagem['data']));
-  $tabelaPesagem .= "<tr>
-                      <td>{$data}</td>
-                      <td>{$pesagem['peso']} Kg</td>
-                    </tr>";
-}
-$tabelaVacinacao = "";
-foreach($resultVacinacao as $vacinacao) {
-  $nomeVacina = $objDB->read('tb_vacina', $vacinacao['vacina_fk']);
-  $data = date("d/m/Y", strtotime($vacinacao['data']));
-  $tabelaVacinacao .= "<tr>
-                        <td>{$nomeVacina['vacina']}</td>
+if (!empty($resultPesagem)) {
+  foreach ($resultPesagem as $pesagem) {
+    $data =  date("d/m/Y", strtotime($pesagem['data']));
+    $tabelaPesagem .= "<tr>
                         <td>{$data}</td>
+                        <td>{$pesagem['peso']} Kg</td>
                       </tr>";
+  }
+} else {
+  $tabelaPesagem = "<tr>
+                      <td>Sem informações.</td>
+                    </tr>";;
 }
+
+$tabelaVacinacao = "";
+if (!empty($resultVacinacao)) {
+  foreach ($resultVacinacao as $vacinacao) {
+    $nomeVacina = $objDB->read('tb_vacina', $vacinacao['vacina_fk']);
+    $data = date("d/m/Y", strtotime($vacinacao['data']));
+    $tabelaVacinacao .= "<tr>
+                          <td>{$nomeVacina['vacina']}</td>
+                          <td>{$data}</td>
+                        </tr>";
+  }
+} else {
+  $tabelaVacinacao = "<tr>
+                      <td>Sem informações.</td>
+                    </tr>";;
+}
+
+$listaHistorico = "";
+if (!empty($resultHistorico)) {
+  foreach ($resultHistorico as $historico) {
+    $nomeHistorico = $objDB->read('tb_tipo_historico', $historico['tipo_historico_fk']);
+    $data = date("d/m/Y", strtotime($historico['data']));
+    $listaHistorico .= "<li><strong>{$data} - {$nomeHistorico['nome']}:</strong><span>{$historico['descricao']}</span></li>";
+  }
+} else {
+  $listaHistorico .= "<li><strong>Sem informações.</strong></li>";
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -43,13 +69,25 @@ foreach($resultVacinacao as $vacinacao) {
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../../public/assets/styles/perfil.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/fontawesome/css/all.css">
 </head>
 
 <body class="corpo">
   <div class="profile-container">
     <div class="header">
-      <div class="picture">
-        <img class="imagem-perfil" src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../public/assets/imgs/imagem_aux.jpeg' ?>" alt="Foto do animal">
+      <div class="picture row">
+        <div class="col-md-2">
+          <ul>
+            <li><i class="fa-solid fa-pen-to-square fa-2xl" onClick="window.open('editar_animal.php?id=<?= $_GET['id'] ?>')"></i></li>
+            <li><i class="fa-solid fa-money-bill-trend-up fa-2xl"></i></li>
+            <li><i class="fa-solid fa-heading fa-2xl" onclick="openPopupHist()"></i></li>
+            <li><i class="fa-solid fa-weight-scale fa-2xl" onclick="openPopupPesagem()"></i></li>
+            <li><i class="fa-solid fa-syringe fa-2xl" onclick="openPopupVacinacao()"></i></li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img class="imagem-perfil" src="<?= !empty($animal['foto']) ? $animal['foto'] : '../../public/assets/imgs/imagem_aux.jpeg' ?>" alt="Foto do animal">
+        </div>
       </div>
 
       <div class="info">
@@ -74,7 +112,7 @@ foreach($resultVacinacao as $vacinacao) {
     <div class="content">
       <div class="section">
         <h2>Descrição</h2>
-        <p><?= $animal['descricao'] ?></p>
+        <p><?= $animal['descricao'] ? $animal['descricao'] : 'Sem informações.' ?></p>
       </div>
     </div>
     <div class="content">
@@ -113,14 +151,56 @@ foreach($resultVacinacao as $vacinacao) {
       <div class="section">
         <h2>Histórico</h2>
         <ul>
-          <li><strong>10/02/2023 - Cruzamento:</strong><span>Foi avistado cruzamento com o touro X.</span></li>
-          <li><strong>05/02/2023 - Alerta:</strong></span>Fugiu do pasto e foi encontrada em Quirino.</span></li>
+          <?= $listaHistorico ?>
         </ul>
-
       </div>
     </div>
+  </div>
 
+  <div id="overlayHist" class="overlay" onclick="closePopupHist()"></div>
+  <div id="popupHist" class="popup">
+    <?php include_once 'popup_animal_hist.php'; ?>
+  </div>
+  <div id="overlayPesagem" class="overlay" onclick="closePopupPesagem()"></div>
+  <div id="popupPesagem" class="popup">
+    <?php include_once 'popup_cadastro_pesagem.php'; ?>
+  </div>
+  <div id="overlayVacinacao" class="overlay" onclick="closePopupVacinacao()"></div>
+  <div id="popupVacinacao" class="popup">
+    <?php include_once 'popup_cadastro_vacinacao.php'; ?>
   </div>
 </body>
 
 </html>
+
+<script>
+  function openPopupHist() {
+    document.getElementById('overlayHist').style.display = 'block';
+    document.getElementById('popupHist').style.display = 'block';
+  }
+
+  function closePopupHist() {
+    document.getElementById('overlayHist').style.display = 'none';
+    document.getElementById('popupHist').style.display = 'none';
+  }
+
+  function openPopupPesagem() {
+    document.getElementById('overlayPesagem').style.display = 'block';
+    document.getElementById('popupPesagem').style.display = 'block';
+  }
+
+  function closePopupPesagem() {
+    document.getElementById('overlayPesagem').style.display = 'none';
+    document.getElementById('popupPesagem').style.display = 'none';
+  }
+
+  function openPopupVacinacao() {
+    document.getElementById('overlayVacinacao').style.display = 'block';
+    document.getElementById('popupVacinacao').style.display = 'block';
+  }
+
+  function closePopupVacinacao() {
+    document.getElementById('overlayVacinacao').style.display = 'none';
+    document.getElementById('popupVacinacao').style.display = 'none';
+  }
+</script>
