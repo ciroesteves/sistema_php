@@ -6,18 +6,18 @@ if (!empty($_POST['titulo'])) {
         "descricao" => $_POST['descricao'],
         "animal_fk" => $_GET['id']
     );
+    var_dump($_POST['titulo']);
+    unset($_POST['titulo']);
 
     $objDB->create('tb_historico', $dados);
-    sleep(5);
-    header("Location: " . $_SERVER['HTTP_REFERER']);
-    exit();
+    $queryString = $_SERVER['QUERY_STRING'];
+    $redirectUrl = $_SERVER['PHP_SELF'] . '?' . $queryString;
+
+    echo "<script>";
+    echo "setTimeout(function() { window.location.href = '{$redirectUrl}'; }, 2000);"; // Redireciona após 2 segundos
+    echo "</script>";
 }
 ?>
-
-<head>
-    <meta charset="UTF=8" />
-    <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
-</head>
 <h1>Cadastro Histórico</h1>
 <form method="POST">
     <div class="form-group">

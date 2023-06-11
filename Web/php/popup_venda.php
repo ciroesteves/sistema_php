@@ -1,13 +1,20 @@
 <?php
-if (!empty($_POST['vacina'])) {
+if (!empty($_POST['valor'])) {
     $dados = array(
         "animal_fk" => $_GET['id'],
-        "vacina_fk" => $_POST['vacina'],
+        "valor" => $_POST['valor'],
         "data" => $_POST['data'],
-        "descricao" => $_POST['descricao']
+        "fornecedor_fk" => $_POST['fornecedor']
     );
 
-    $objDB->create('tb_vacinacao', $dados);
+    $success = $objDB->create('tb_venda', $dados);
+    if($success) {
+        $dados = array(
+            "status" => 2
+        );
+        $objDB->update('tb_animal', $dados, "id = {$_GET['id']}");
+    }
+
     $queryString = $_SERVER['QUERY_STRING'];
     $redirectUrl = $_SERVER['PHP_SELF'] . '?' . $queryString;
 
@@ -16,16 +23,16 @@ if (!empty($_POST['vacina'])) {
     echo "</script>";
 }
 ?>
-<h1>Cadastro Vacinação</h1>
+<h1>Venda</h1>
 <form method="POST">
     <div class="form-group">
-        <label for="vacina">Controle sanitário:</label>
-        <select name="vacina" id="vacina">
+        <label for="fornecedor">Comprador:</label>
+        <select name="fornecedor" id="fornecedor">
             <?php
             echo '<option value="" checked>Selecione</option>';
-            $lotes = $objDB->readAll('tb_vacina');
-            foreach ($lotes as $lote) {
-                echo '<option value="' . $lote['id'] . '" >' . $lote['vacina'] . '</option>';
+            $fornecedores = $objDB->readAll('tb_fornecedor');
+            foreach ($fornecedores as $fornecedor) {
+                echo '<option value="' . $fornecedor['id'] . '" >' . $fornecedor['nome'] . '</option>';
             }
             ?>
         </select>
@@ -35,8 +42,8 @@ if (!empty($_POST['vacina'])) {
         <input type="date" id="data" name="data" required>
     </div>
     <div class="form-group">
-        <label for="descricao">Observação:</label>
-        <textarea id="descricao" name="descricao"></textarea>
+        <label for="valor">Valor:</label>
+        <input type="number" step="0.01" id="valor" name="valor" required>
     </div>
     <div class="form-group">
         <button type="submit">Cadastrar</button>

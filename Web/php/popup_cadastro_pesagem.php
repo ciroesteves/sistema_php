@@ -7,16 +7,14 @@ if (!empty($_POST['peso'])) {
     );
 
     $objDB->create('tb_pesagem', $dados);
-    sleep(5);
-    header("Location: " . $_SERVER['HTTP_REFERER']);
-    exit();
+    $queryString = $_SERVER['QUERY_STRING'];
+    $redirectUrl = $_SERVER['PHP_SELF'] . '?' . $queryString;
+
+    echo "<script>";
+    echo "setTimeout(function() { window.location.href = '{$redirectUrl}'; }, 2000);"; // Redireciona após 2 segundos
+    echo "</script>";
 }
 ?>
-
-<head>
-    <meta charset="UTF=8" />
-    <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
-</head>
 <h1>Cadastro Pesagem</h1>
 <form method="POST">
     <div class="form-group">
@@ -27,7 +25,6 @@ if (!empty($_POST['peso'])) {
         <label for="data">Data:</label>
         <input type="date" id="data" name="data" required>
     </div>
-    <input type="text" id="id" name="id" hidden value="<?= $_GET['id'] ?>" required>
     <div class="form-group">
         <button type="submit">Cadastrar</button>
     </div>

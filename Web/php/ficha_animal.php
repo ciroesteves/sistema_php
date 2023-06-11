@@ -1,8 +1,15 @@
 <?php
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 require_once './navegador.php';
 require_once '../lib/php/DB.class.php';
 $objDB = new DB();
 $objDB->connect();
+
+$queryString = $_SERVER['QUERY_STRING'];
+$redirectUrl = $_SERVER['PHP_SELF'] . '?' . $queryString;
 
 $id = $_GET['id'];
 $sql = "SELECT animal.*, lote.*, raca.raca, raca.descricao as raca_descricao FROM tb_animal animal JOIN tb_raca raca ON animal.raca_fk = raca.id JOIN tb_lote lote ON animal.lote_fk = lote.id WHERE animal.id = $id";
@@ -16,6 +23,9 @@ $filtro = " animal_fk = {$id} ORDER BY data desc";
 $resultPesagem = $objDB->readWhere('tb_pesagem', $filtro);
 $resultVacinacao = $objDB->readWhere('tb_vacinacao', $filtro);
 $resultHistorico = $objDB->readWhere('tb_historico', $filtro);
+
+$resultPeso = $resultPesagem[0]['peso'];
+$resultPeso = $resultPeso ? $resultPeso : 0;
 
 $tabelaPesagem = "";
 if (!empty($resultPesagem)) {
@@ -69,6 +79,7 @@ if (!empty($resultHistorico)) {
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../../public/assets/styles/perfil.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
   <link rel="stylesheet" type="text/css" href="../../public/assets/styles/fontawesome/css/all.css">
 </head>
 
@@ -78,8 +89,9 @@ if (!empty($resultHistorico)) {
       <div class="picture row">
         <div class="col-md-2">
           <ul>
+            <li><i class="fa-solid fa-arrows-rotate fa-2xl" onclick="refresh()"></i></li>
             <li><i class="fa-solid fa-pen-to-square fa-2xl" onClick="window.open('editar_animal.php?id=<?= $_GET['id'] ?>')"></i></li>
-            <li><i class="fa-solid fa-money-bill-trend-up fa-2xl"></i></li>
+            <li><i class="fa-solid fa-money-bill-trend-up fa-2xl" onclick="openPopupVenda()"></i></li>
             <li><i class="fa-solid fa-heading fa-2xl" onclick="openPopupHist()"></i></li>
             <li><i class="fa-solid fa-weight-scale fa-2xl" onclick="openPopupPesagem()"></i></li>
             <li><i class="fa-solid fa-syringe fa-2xl" onclick="openPopupVacinacao()"></i></li>
@@ -98,7 +110,7 @@ if (!empty($resultHistorico)) {
           echo date_format($data, "d/m/Y");
           ?>
         </p>
-        <p><strong>Peso: </strong> 320 kg / 10,8@</p>
+        <p><strong>Peso: </strong><?= $resultPeso ?> Kg</p>
         <p><strong>Sexo: </strong><?php echo $sexo = $animal['sexo'] == 1 ? 'Fêmea' : 'Macho'; ?></p>
         <p><strong>Raça: </strong><?= $animal['raca'] ?></p>
         <p><strong>Lote: </strong><?= $animal['lote'] ?></p>
@@ -169,6 +181,10 @@ if (!empty($resultHistorico)) {
   <div id="popupVacinacao" class="popup">
     <?php include_once 'popup_cadastro_vacinacao.php'; ?>
   </div>
+  <div id="overlayVenda" class="overlay" onclick="closePopupVenda()"></div>
+  <div id="popupVenda" class="popup">
+    <?php include_once 'popup_venda.php'; ?>
+  </div>
 </body>
 
 </html>
@@ -202,5 +218,19 @@ if (!empty($resultHistorico)) {
   function closePopupVacinacao() {
     document.getElementById('overlayVacinacao').style.display = 'none';
     document.getElementById('popupVacinacao').style.display = 'none';
+  }
+
+  function openPopupVenda() {
+    document.getElementById('overlayVenda').style.display = 'block';
+    document.getElementById('popupVenda').style.display = 'block';
+  }
+
+  function closePopupVenda() {
+    document.getElementById('overlayVenda').style.display = 'none';
+    document.getElementById('popupVenda').style.display = 'none';
+  }
+
+  function refresh() {
+    location.reload();
   }
 </script>

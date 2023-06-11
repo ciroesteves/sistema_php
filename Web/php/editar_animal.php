@@ -7,8 +7,9 @@ $objDB->connect();
 $result = $objDB->read('tb_animal', $_GET['id']);
 
 if ($_POST) {
+    $caminhoDestino = $result['foto'];
     if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
-        $nomeArquivo = $_POST['numero'] . ".jpeg";
+        $nomeArquivo = $_POST['numero'] . time() . ".jpeg";
         $caminhoTemporario = $_FILES["foto"]["tmp_name"];
         $caminhoDestino = "../../private/photos/" . $nomeArquivo;
 
