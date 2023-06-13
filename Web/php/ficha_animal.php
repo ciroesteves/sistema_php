@@ -24,8 +24,7 @@ $resultPesagem = $objDB->readWhere('tb_pesagem', $filtro);
 $resultVacinacao = $objDB->readWhere('tb_vacinacao', $filtro);
 $resultHistorico = $objDB->readWhere('tb_historico', $filtro);
 
-$resultPeso = $resultPesagem[0]['peso'];
-$resultPeso = $resultPeso ? $resultPeso : 0;
+$resultPeso = !empty($resultPesagem[0]['peso']) ? $resultPesagem[0]['peso'] : 0;
 
 $tabelaPesagem = "";
 if (!empty($resultPesagem)) {
@@ -89,12 +88,12 @@ if (!empty($resultHistorico)) {
       <div class="picture row">
         <div class="col-md-2">
           <ul>
-            <li><i class="fa-solid fa-arrows-rotate fa-2xl" onclick="refresh()"></i></li>
             <li><i class="fa-solid fa-pen-to-square fa-2xl" onClick="window.open('editar_animal.php?id=<?= $_GET['id'] ?>')"></i></li>
-            <li><i class="fa-solid fa-money-bill-trend-up fa-2xl" onclick="openPopupVenda()"></i></li>
             <li><i class="fa-solid fa-heading fa-2xl" onclick="openPopupHist()"></i></li>
             <li><i class="fa-solid fa-weight-scale fa-2xl" onclick="openPopupPesagem()"></i></li>
             <li><i class="fa-solid fa-syringe fa-2xl" onclick="openPopupVacinacao()"></i></li>
+            <li><i class="fa-solid fa-money-bill-trend-up fa-2xl" onclick="openPopupVenda()"></i></li>
+            <li><i class="fa-solid fa-skull fa-2xl"  onclick="openPopupMorte()"></i></li>
           </ul>
         </div>
         <div class="col-md-6">
@@ -185,6 +184,10 @@ if (!empty($resultHistorico)) {
   <div id="popupVenda" class="popup">
     <?php include_once 'popup_venda.php'; ?>
   </div>
+  <div id="overlayMorte" class="overlay" onclick="closePopupMorte()"></div>
+  <div id="popupMorte" class="popup">
+    <?php include_once 'popup_morte.php'; ?>
+  </div>
 </body>
 
 </html>
@@ -230,7 +233,13 @@ if (!empty($resultHistorico)) {
     document.getElementById('popupVenda').style.display = 'none';
   }
 
-  function refresh() {
-    location.reload();
+  function openPopupMorte() {
+    document.getElementById('overlayMorte').style.display = 'block';
+    document.getElementById('popupMorte').style.display = 'block';
+  }
+
+  function closePopupMorte() {
+    document.getElementById('overlayMorte').style.display = 'none';
+    document.getElementById('popupMorte').style.display = 'none';
   }
 </script>

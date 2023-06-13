@@ -9,6 +9,9 @@ $filtro = " status = 1 ";
 if (!empty($_POST['idade_ini'])) {
   $filtro .= " and DATEDIFF(CURDATE(), nascimento) / 30 >= {$_POST['idade_ini']} ";
 }
+if (!empty($_POST['idade_ini'])) {
+  $filtro .= " and DATEDIFF(CURDATE(), nascimento) / 30 >= {$_POST['idade_ini']} ";
+}
 if (!empty($_POST['idade_fim'])) {
   $filtro .= " and DATEDIFF(CURDATE(), nascimento) / 30 <= {$_POST['idade_fim']} ";
 }
@@ -45,13 +48,21 @@ $relatorio = $objDB->readWhere('tb_animal', $filtro);
   <meta charset="UTF-8">
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
   <link rel="stylesheet" type="text/css" href="../../public/assets/styles/relatorios.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/formularios.css">
 </head>
 
 <body class="corpo">
   <div class="container">
-    <h2>Formulário de Consulta</h2>
+    <div class="row">
+      <div class="col-6">
+        <h2>Formulário de Consulta</h2>
+      </div>
+      <div class="col text-right">
+        <button class='btn btn-success' onclick="location.href ='cadastro_animal.php';">Cadastro Animal</button>
+      </div>
+    </div>
+    
     <form action="lista_animal.php" method="POST">
       <div class="form-group">
         <label for="idade_ini">Idade (meses):</label>

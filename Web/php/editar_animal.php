@@ -24,7 +24,6 @@ if ($_POST) {
 
     $dados = array(
         "nome" => $_POST['nome'],
-        "numero" => $result['id'],
         "nascimento" => $_POST['nascimento'],
         "lote_fk" => $_POST['lote_fk'],
         "raca_fk" => $_POST['raca_fk'],
@@ -141,9 +140,9 @@ if ($_POST) {
             <div class="form-group">
                 <label for="sexo">Sexo:</label>
                 <div class="radio-button-container">
-                    <input type="radio" id="femea" name="sexo" value="1" checked>
+                    <input type="radio" id="femea" name="sexo" value="1" <?= $checked = $result['sexo'] == 1 ? "checked" : "" ?>>
                     <label for="femea">Fêmea</label>
-                    <input type="radio" id="macho" name="sexo" value="2">
+                    <input type="radio" id="macho" name="sexo" value="2" <?= $checked = $result['sexo'] == 2 ? "checked" : "" ?>>
                     <label for="macho">Macho</label>
                 </div>
 

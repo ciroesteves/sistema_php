@@ -6,6 +6,8 @@ body {
 h1 {
 	font-size: 24px;
 	margin-bottom: 20px;
+	font-weight: bold;
+	text-align: center;
 }
 
 p {
@@ -140,10 +142,15 @@ p {
 }
 
 .container-small {
-	width: 500px;
+	width: 700px;
 	margin: 50px auto;
 	padding: 20px;
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.radio-button-container label {
+	width: 50px;
+	margin-left: 0px;
 }

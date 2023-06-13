@@ -9,6 +9,7 @@ include 'gerador_de_tabelas.php';
   <meta charset="UTF-8">
   <title>Fazenda</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/styles/relatorios.css">
 </head>
 
 <body class="corpo">

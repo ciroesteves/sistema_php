@@ -40,7 +40,7 @@ if ($_POST) {
       <div class="col-md-2 text-right"> 
         <a onclick="location.href ='tabelas_padrao.php';">Voltar</a>
       </div>
-      <h1 class="col-md-4">Cadastro de Pesagem</h1>
+      <h1 class="col-md-8">Cadastro de Pesagem</h1>
     </div>
         <form method="POST">
             <div class="form-group">
